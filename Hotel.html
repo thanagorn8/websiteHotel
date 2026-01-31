@@ -20,6 +20,7 @@
             color: #eee;
         }
 
+        /* HERO */
         .hero {
             height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
@@ -76,15 +77,23 @@
             cursor: pointer;
         }
 
-        .about, .rooms, .upload {
+        /* SECTIONS */
+        .about, .rooms, .video-section {
             padding: 80px;
             text-align: center;
         }
 
-        .about h2, .rooms h2, .upload h2 {
+        .about h2, .rooms h2, .video-section h2 {
             font-family: 'Playfair Display', serif;
             font-size: 36px;
             color: gold;
+            margin-bottom: 20px;
+        }
+
+        .about p {
+            max-width: 700px;
+            margin: auto;
+            line-height: 1.8;
         }
 
         .room-list {
@@ -102,40 +111,38 @@
             border: 1px solid gold;
         }
 
-        /* UPLOAD */
-        .upload-box input {
-            display: none;
+        /* VIDEO */
+        .video-box video {
+            width: 80%;
+            max-width: 900px;
+            border: 3px solid gold;
+            border-radius: 8px;
         }
 
-        .upload-box label {
-            padding: 12px 30px;
-            background: gold;
-            color: #000;
-            cursor: pointer;
-            margin: 10px;
-            display: inline-block;
-        }
-
-        .preview {
-            margin-top: 30px;
-        }
-
-        .preview img,
-        .preview video {
-            max-width: 500px;
-            border: 2px solid gold;
-            display: none;
-        }
-
+        /* FOOTER */
         footer {
             background: #000;
             padding: 20px;
             text-align: center;
+            font-size: 14px;
         }
 
+        /* RESPONSIVE */
         @media (max-width: 768px) {
             nav {
                 padding: 20px;
+            }
+
+            .hero-text h2 {
+                font-size: 34px;
+            }
+
+            .about, .rooms, .video-section {
+                padding: 50px 20px;
+            }
+
+            .video-box video {
+                width: 100%;
             }
         }
     </style>
@@ -149,6 +156,7 @@
         <ul>
             <li><a href="#">หน้าแรก</a></li>
             <li><a href="#">ห้องพัก</a></li>
+            <li><a href="#">สิ่งอำนวยความสะดวก</a></li>
             <li><a href="#">ติดต่อ</a></li>
         </ul>
     </nav>
@@ -162,64 +170,45 @@
 
 <section class="about">
     <h2>เกี่ยวกับโรงแรม</h2>
-    <p>โรงแรมระดับ 5 ดาว บริการเหนือระดับ</p>
+    <p>
+        Grand Luxury Hotel มอบประสบการณ์การพักผ่อนระดับ 5 ดาว
+        ด้วยการออกแบบที่หรูหรา บริการระดับมืออาชีพ
+        และสิ่งอำนวยความสะดวกครบครัน
+    </p>
 </section>
 
 <section class="rooms">
     <h2>ห้องพักของเรา</h2>
     <div class="room-list">
-        <div class="room">Deluxe Room</div>
-        <div class="room">Suite Room</div>
-        <div class="room">Presidential Suite</div>
+        <div class="room">
+            <h3>Deluxe Room</h3>
+            <p>หรูหรา สะดวกสบาย วิวเมือง</p>
+        </div>
+        <div class="room">
+            <h3>Suite Room</h3>
+            <p>พื้นที่กว้างขวาง พร้อมห้องนั่งเล่น</p>
+        </div>
+        <div class="room">
+            <h3>Presidential Suite</h3>
+            <p>ที่สุดแห่งความหรูหรา สำหรับคนพิเศษ</p>
+        </div>
     </div>
 </section>
 
-<!-- UPLOAD IMAGE & VIDEO -->
-<section class="upload">
-    <h2>อัปโหลดรูปและวิดีโอ</h2>
-
-    <div class="upload-box">
-        <input type="file" id="imageUpload" accept="image/*">
-        <label for="imageUpload">อัปโหลดรูปภาพ</label>
-
-        <input type="file" id="videoUpload" accept="video/*">
-        <label for="videoUpload">อัปโหลดวิดีโอ</label>
-    </div>
-
-    <div class="preview">
-        <img id="previewImage">
-        <video id="previewVideo" controls></video>
+<!-- VIDEO SECTION -->
+<section class="video-section">
+    <h2>วิดีโอแนะนำโรงแรม</h2>
+    <div class="video-box">
+        <video autoplay muted loop controls>
+            <source src="แนะนำตัวเอง.mp4" type="video/mp4">
+            เบราว์เซอร์ของคุณไม่รองรับวิดีโอ
+        </video>
     </div>
 </section>
 
 <footer>
-    <p>© 2026 Grand Luxury Hotel</p>
+    <p>© 2026 Grand Luxury Hotel | All Rights Reserved</p>
 </footer>
-
-<script>
-    const imageUpload = document.getElementById("imageUpload");
-    const videoUpload = document.getElementById("videoUpload");
-    const previewImage = document.getElementById("previewImage");
-    const previewVideo = document.getElementById("previewVideo");
-
-    imageUpload.addEventListener("change", function () {
-        const file = this.files[0];
-        if (file) {
-            previewImage.src = URL.createObjectURL(file);
-            previewImage.style.display = "block";
-            previewVideo.style.display = "none";
-        }
-    });
-
-    videoUpload.addEventListener("change", function () {
-        const file = this.files[0];
-        if (file) {
-            previewVideo.src = URL.createObjectURL(file);
-            previewVideo.style.display = "block";
-            previewImage.style.display = "none";
-        }
-    });
-</script>
 
 </body>
 </html>
