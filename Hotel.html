@@ -87,12 +87,12 @@
         }
 
         /* ABOUT & ROOMS */
-        .about, .rooms {
+        .about, .rooms, .upload {
             padding: 80px;
             text-align: center;
         }
 
-        .about h2, .rooms h2 {
+        .about h2, .rooms h2, .upload h2 {
             font-family: 'Playfair Display', serif;
             font-size: 36px;
             margin-bottom: 20px;
@@ -130,6 +130,34 @@
             margin-bottom: 10px;
         }
 
+        /* UPLOAD SECTION */
+        .upload-box input {
+            display: none;
+        }
+
+        .upload-box label {
+            padding: 12px 35px;
+            background: gold;
+            color: #000;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .upload-box label:hover {
+            background: #c9a227;
+        }
+
+        .preview {
+            margin-top: 30px;
+        }
+
+        .preview img {
+            max-width: 420px;
+            border: 2px solid gold;
+            display: none;
+        }
+
         /* FOOTER */
         footer {
             background: #000;
@@ -148,7 +176,7 @@
                 font-size: 36px;
             }
 
-            .about, .rooms {
+            .about, .rooms, .upload {
                 padding: 50px 20px;
             }
         }
@@ -202,9 +230,40 @@
     </div>
 </section>
 
+<!-- UPLOAD IMAGE SECTION -->
+<section class="upload">
+    <h2>อัปโหลดรูปโรงแรม</h2>
+
+    <div class="upload-box">
+        <input type="file" id="imageUpload" accept="image/*">
+        <label for="imageUpload">เลือกรูปภาพ</label>
+    </div>
+
+    <div class="preview">
+        <img id="previewImage" alt="Preview Image">
+    </div>
+</section>
+
 <footer>
     <p>© 2026 Grand Luxury Hotel | All Rights Reserved</p>
 </footer>
+
+<script>
+    const imageUpload = document.getElementById("imageUpload");
+    const previewImage = document.getElementById("previewImage");
+
+    imageUpload.addEventListener("change", function () {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function () {
+                previewImage.src = reader.result;
+                previewImage.style.display = "block";
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
 
 </body>
 </html>
